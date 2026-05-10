@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-requirements_intelligence}
+      POSTGRES_USER: ${POSTGRES_USER:-requirements_app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-requirements_app}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      APP_HOST: 0.0.0.0
+      APP_PORT: ${BACKEND_PORT:-8000}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-requirements_app}:${POSTGRES_PASSWORD:-requirements_app}@db:5432/${POSTGRES_DB:-requirements_intelligence}
+      REQUIREMENT_GENERATION_PROVIDER: ${REQUIREMENT_GENERATION_PROVIDER:-mock}
+      REQUIREMENT_GENERATION_FALLBACK_TO_MOCK: ${REQUIREMENT_GENERATION_FALLBACK_TO_MOCK:-true}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4.1-mini}
+      OPENAI_TIMEOUT_SECONDS: ${OPENAI_TIMEOUT_SECONDS:-30}
+      OPENAI_MAX_RETRIES: ${OPENAI_MAX_RETRIES:-1}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000}
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
