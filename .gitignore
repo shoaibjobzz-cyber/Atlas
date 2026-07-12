@@ -8,4 +8,5 @@ __pycache__/
 frontend/.env
 backend/.env
 frontend/playwright-report/
-frontend/test-results/
+frontend/test-results*/
+frontend/coverage/
