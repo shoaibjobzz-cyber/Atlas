@@ -19,7 +19,7 @@ import AppButton from "../components/common/AppButton";
 import WorkspaceStatePanel from "../components/common/WorkspaceStatePanel";
 import ProjectWorkspaceShell from "../components/layout/ProjectWorkspaceShell";
 import RequirementsContextPanel from "../components/requirements/RequirementsContextPanel";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContextCore";
 import { routePaths } from "../routes/routePaths";
 import {
   deleteProject,

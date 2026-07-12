@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import AppButton from "../components/common/AppButton";
 import { AtlasLogo } from "../design-system/branding";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContextCore";
 import { routePaths } from "../routes/routePaths";
 
 export default function LoginPage() {

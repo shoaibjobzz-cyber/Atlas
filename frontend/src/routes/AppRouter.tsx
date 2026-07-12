@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { Box } from "@mui/material";
 import { Navigate, Route, Routes } from "react-router-dom";
 import WorkspaceStatePanel from "../components/common/WorkspaceStatePanel";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContextCore";
 import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import ProjectDashboardPage from "../pages/ProjectDashboardPage";

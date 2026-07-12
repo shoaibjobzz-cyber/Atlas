@@ -121,7 +121,7 @@ export default function ValidationPage() {
     return source ? normalizeValidationViewResponse(source) : null;
   }, [liveSummary, selectedSnapshot]);
 
-  const results: ValidationRequirementResult[] = validationView?.results ?? [];
+  const results = useMemo<ValidationRequirementResult[]>(() => validationView?.results ?? [], [validationView?.results]);
   const summary = validationView?.summary ?? null;
 
   const qualityFindings = useMemo(

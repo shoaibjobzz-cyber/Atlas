@@ -13,7 +13,6 @@ import {
   Paper,
   Stack,
   TextField,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import {
@@ -162,15 +161,6 @@ function impactModeLabel(
       : "Bidirectional";
 }
 
-function impactDirectionForMode(
-  mode: Extract<GraphExplorationMode, "impact" | "upstream-impact" | "downstream-impact">
-) {
-  return mode === "upstream-impact"
-    ? "upstream"
-    : mode === "downstream-impact"
-      ? "downstream"
-      : "both";
-}
 
 function buildImpactSummaryItems(
   mode: Extract<GraphExplorationMode, "impact" | "upstream-impact" | "downstream-impact">,
@@ -2470,7 +2460,7 @@ export default function TraceabilityGraphPage() {
             edges: renderedEdges,
           },
         };
-    }, [activeBackendAnalysis, activeNodeId, backendDrivenExploration, debugRenderMode, debugRenderableMode, explorationMembershipOverride, explorationMode, fullGraph, graph, integrityDiagnosticsEnabled]);
+    }, [activeBackendAnalysis, activeNodeId, backendDrivenExploration, debugRenderMode, debugRenderableMode, explorationMembershipOverride, explorationMode, filters.provenance, filters.subsystem, filters.type, fullGraph, graph, graphNodes, integrityDiagnosticsEnabled]);
 
   const debugIntegrity = useMemo(() => {
     if (!styledGraph.integrity) {
@@ -2551,7 +2541,7 @@ export default function TraceabilityGraphPage() {
     } else {
       pendingExplorationFitKeyRef.current = null;
     }
-  }, [setEdges, setNodes, styledGraph.graph.edges, styledGraph.graph.nodes]);
+  }, [activeNodeId, explorationMode, integrityDiagnosticsEnabled, setEdges, setNodes, styledGraph.analysis, styledGraph.graph.edges, styledGraph.graph.nodes, styledGraph.integrity?.finalVisibleActiveNodeIds]);
 
   useEffect(() => {
     if (

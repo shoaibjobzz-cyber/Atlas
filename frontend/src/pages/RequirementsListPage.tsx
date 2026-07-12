@@ -34,7 +34,6 @@ import type {
   RequirementSection,
   RequirementType,
 } from "../types/requirements";
-import { requirementTypeOptions } from "../types/requirements";
 import {
   compareRequirementsByHierarchy,
   getHierarchyDepth,

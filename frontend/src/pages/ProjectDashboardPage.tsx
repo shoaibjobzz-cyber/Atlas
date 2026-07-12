@@ -372,7 +372,6 @@ export default function ProjectDashboardPage() {
     health?.score,
     highRiskDfmeaCount,
     projectId,
-    scopedDfmeaEntries,
     scopedRequirements,
     scopedValidationRequirements,
     selectedFeature,

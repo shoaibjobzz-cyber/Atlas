@@ -1,6 +1,4 @@
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import {
   Alert,
@@ -22,7 +20,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import AppButton from "../components/common/AppButton";
 import AppCompactActionButton from "../components/common/AppCompactActionButton";
-import AppIconActionButton from "../components/common/AppIconActionButton";
 import WorkspaceCommandBar from "../components/common/WorkspaceCommandBar";
 import WorkspacePageHeader from "../components/common/WorkspacePageHeader";
 import WorkspaceStatePanel from "../components/common/WorkspaceStatePanel";
@@ -130,7 +127,6 @@ export default function RequirementDetailPage() {
   const [dfmeaError, setDfmeaError] = useState<string | null>(null);
   const [qualitySummary, setQualitySummary] = useState<RequirementQualitySummary | null>(null);
   const [qualityError, setQualityError] = useState<string | null>(null);
-  const [activeActionTooltip, setActiveActionTooltip] = useState<string | null>(null);
 
   useEffect(() => {
     const selectedTab = searchParams.get("tab");
@@ -333,12 +329,6 @@ export default function RequirementDetailPage() {
         { label: "Updated", value: "Loading" },
       ];
 
-  function showActionTooltip(key: string) {
-    setActiveActionTooltip(key);
-    window.setTimeout(() => {
-      setActiveActionTooltip((current) => (current === key ? null : current));
-    }, 3000);
-  }
 
   const readOnly = Boolean(requirement?.is_deleted);
 

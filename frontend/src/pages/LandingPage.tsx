@@ -34,7 +34,7 @@ import AppIconActionButton from "../components/common/AppIconActionButton";
 import WorkspaceCommandBar from "../components/common/WorkspaceCommandBar";
 import CreateProjectModal from "../components/landing/CreateProjectModal";
 import { AtlasLogo } from "../design-system/branding";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContextCore";
 import { routePaths } from "../routes/routePaths";
 import { loadBrakePlatformDemoProject, loadBrakingDemoProject } from "../services/demoApi";
 import { deleteProject, fetchProjects } from "../services/projectsApi";
